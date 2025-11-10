@@ -146,7 +146,7 @@ def chat():
     try:
         model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(
-            f"You are Civic Helper, a friendly AI that gives short bullet-point civic/business guidance with links to real resources.\nUser: {message}"
+            f"You are Civic Helper, a friendly AI that gives very short, but clean and accurate civic/business guidance with links to real resources.\nUser: {message}"
         )
         return jsonify({"reply": response.text})
     except Exception as e:

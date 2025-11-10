@@ -144,19 +144,19 @@ function SlidesRail() {
       <Slide
         heading="One Platform, Three Connected Sides"
         lines={[
-          "Government Portal → instant AI matching",
+          "Civic Portal → instant AI matching",
           "Business Portal → AI bid assistant",
-          "Public Dashboard → real-time transparency",
+          "Community Impact → real-time transparency",
         ]}
       />
       <Slide
         heading="Watch It Work — The Full Procurement Flow"
         lines={[
-          "1) Government posts need",
+          "1) Businesses post needs",
           "2) AI matches vendors",
           "3) Business gets AI help",
           "4) Government sees full value",
-          "5) Public dashboard updates",
+          "5) Community dashboard updates",
         ]}
       />
     </div>
@@ -228,7 +228,7 @@ try {
   return (
     <div className="space-y-6">
       <SectionTitle
-        kicker="Government Portal"
+        kicker="Civic Portal"
         title="Post a need. Get perfect local matches in seconds."
         desc="AI scans certifications, reviews, distance, and fit. You get the top three—no 200 random bids."
       />
@@ -363,7 +363,7 @@ function BusinessPortal({ notifications }) {
       });
       const data = await res.json();
       if (data?.success) {
-        alert("Bid submitted! Switching back to Government view will show comparison.");
+        alert("Bid submitted! Switching back to Civic view will show comparison.");
       }
     } catch (e) {
       console.error(e);
@@ -384,7 +384,7 @@ function BusinessPortal({ notifications }) {
             <div className="text-sm text-neutral-600 mb-2">Notifications</div>
             <div className="space-y-2">
               {notifications.length === 0 && (
-                <div className="text-sm text-neutral-500">No notifications yet—get notified from Government portal.</div>
+                <div className="text-sm text-neutral-500">No notifications yet—get notified from Civic portal.</div>
               )}
               {notifications.map((n, i) => (
                 <button key={i} onClick={() => setSelected(n)} className={cn(
@@ -449,7 +449,7 @@ function PublicDashboard() {
   return (
     <div className="space-y-6">
       <SectionTitle
-        kicker="Public Dashboard"
+        kicker="Community Dashboard"
         title="Radically simple transparency. No login required."
         desc="Track progress toward equity, understand the Memphis Multiplier, and explore where dollars go."
       />
@@ -602,9 +602,9 @@ export default function CivicSourceApp() {
           <nav className="ml-auto flex items-center gap-2">
             {[
               ["Home", "landing"],
-              ["Government", "government"],
-              ["Business", "business"],
-              ["Public Dashboard", "public"],
+              ["Civic Portal", "government"],
+              ["Business Portal", "business"],
+              ["Community Impact", "public"],
               ["Comparison", "compare"],
             ].map(([label, key]) => (
               <button key={key} onClick={() => setTab(key)} className={cn(
@@ -624,7 +624,7 @@ export default function CivicSourceApp() {
               Empowering Memphis Through Smarter Procurement
             </h1>
             <p className="mt-6 text-neutral-700 max-w-xl">
-              Three‑sided platform: <span className="font-medium">Government</span> gets instant matches, <span className="font-medium">Businesses</span> get an AI bid copilot, and the <span className="font-medium">Public</span> gets a live transparency dashboard.
+              The <span className="font-medium">Civic Helper</span> breaks down complex RFPs, <span className="font-medium">Helps</span> owners price fairly,  and even <span className="font-medium">Links</span> to real compliance and certification resources.
             </p>
             <div className="mt-6 flex gap-3">
               <button onClick={() => setTab("government")} className="rounded-2xl bg-neutral-900 text-white px-5 py-3">Sign In</button>
@@ -732,11 +732,12 @@ export default function CivicSourceApp() {
             thinking.classList.remove("hidden");
 
             try {
-              const res = await fetch("http://localhost:5000/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: msg }),
-              });
+              const res = await fetch("http://localhost:5000/api/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: msg }),
+});
+
               const data = await res.json();
               thinking.classList.add("hidden");
 
